@@ -50,6 +50,7 @@ CHAT ROOM
 ----------------------------------------------------- */
 #current-user {
   color: #F22613;
+  text-transform: capitalize;
 }
 
 .panel {
@@ -159,6 +160,10 @@ SIDEBAR STYLE
   background: #F22613;
   color: #ffffff;
   transition: all 0.3s;
+}
+
+#sidebar-username {
+  text-transform: capitalize;
 }
 
 #sidebar.active {

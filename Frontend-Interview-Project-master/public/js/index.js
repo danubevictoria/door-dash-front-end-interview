@@ -33,8 +33,9 @@ $(document).ready(function () {
 
 function getRoomList(url) {
   $.get(url, function(response) {
-    for (let i = 0; i < response.length; i++) {
-      createRoom(response[i].id, response[i].name);
+    let rooms = response.sort(response.name);
+    for (let i = 0; i < rooms.length; i++) {
+      createRoom(rooms[i].id, rooms[i].name);
     }
     getRoomDetails();
     getMessages();
@@ -147,6 +148,7 @@ function getMessages() {
 
 function sendMessage(url) {
   let name = $('#current-user').text();
+  name = name.charAt(0).toUpperCase() + name.slice(1);
   let message = $('#message').val();
 
   $.post(url, { name:name, message:message }, function(data) {
