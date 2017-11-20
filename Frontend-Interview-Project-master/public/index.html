@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>DoorDash Frontend Project</title>
+  <script src="https://unpkg.com/jquery@3.1.1"></script>
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+  <!-- Scrollbar Custom CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+  <!-- Bootstrap CSS CDN -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="app">
+    <!-- Set Username -->
+    <div id="login" class="container wrapper">
+
+      <form id="login-form" class="login-form">
+        <div class="form-group">
+          <input type="text" class="form-control input-lg" id="username" placeholder="Type your username..." required>
+        </div>
+        <button id="join-btn" type="submit" class="btn btn-danger btn-lg btn-block">Join Door Dash Chat!</button>
+      </form>
+
+    </div>
+
+    <!-- Sidebar -->
+    <div id="sidebar" class="wrapper hidden">
+
+      <nav>
+        <!-- Sidebar Header -->
+        <div class="sidebar-header">
+          <h3 id='sidebar-username'></h3>
+          <span>Online<span id="elapsed-minutes"></span></span>
+        </div>
+        <!-- Sidebar Links -->
+        <ul id='room-list' class="list-unstyled components">
+
+        </ul>
+      </nav>
+    </div>
+
+    <!-- Chat Room -->
+    <div id="chat-room" class="hidden">
+      <div class="panel panel-default">
+        <div class="panel-body text-center">
+          <h2 id="room-name">{room}</h2>
+          <div>
+            <span id="current-user">{current-user}</span><span id="users">{users}</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="chat-window" class="panel panel-default">
+        <div class="panel-body">
+          <ul id='message-list'>
+          </ul>
+        </div>
+      </div>
+
+      <footer>
+        <div id="message-box" class="panel panel-default">
+          <div class="panel-body text-center">
+            <form id="message-form">
+              <div class="form-row align-items-center">
+                <div class="col-sm-10">
+                  <input type="textarea" class="form-control mb-2 mb-sm-0 input-lg" id="message" placeholder="Type a message..." required>
+                </div>
+                <div class="col-auto">
+                  <button id="send-btn" type="submit" class="btn btn-lg">Send</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+  </div>
+  <!-- jQuery CDN -->
+  <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+  <!-- Bootstrap Js CDN -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!-- Custom Scroller Js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+  <!-- Custom JS -->
+  <script src="js/index.js"></script>
+</body>
+</html>
