@@ -33,22 +33,30 @@ $(document).ready(function () {
 
 function getRoomList(url) {
   $.get(url, function(response) {
-    let rooms = response.sort(response.name);
+    let rooms = response.sort(compare);
     for (let i = 0; i < rooms.length; i++) {
-      createRoom(rooms[i].id, rooms[i].name);
+      createRoom(rooms[i].id, rooms[i].name, i);
     }
     getRoomDetails();
     getMessages();
   });
 };
 
-function createRoom(id, name) {
+function compare(a,b) {
+  if (a.name < b.name)
+    return -1;
+  if (a.name > b.name)
+    return 1;
+  return 0;
+};
+
+function createRoom(id, name, elemNum) {
   let room = document.createElement('li');
   let link = document.createElement('a');
   let list = document.getElementById('room-list');
 
   room.setAttribute('class', 'room');
-  if (id === 0) {
+  if (elemNum === 0) {
     room.setAttribute('class', 'room active');
   }
   room.setAttribute('id', id);
