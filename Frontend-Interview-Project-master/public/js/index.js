@@ -103,7 +103,7 @@ function getRoomDetails() {
       let userHtml = '';
 
       for (let i = 0; i < users.length; i++) {
-        if (users[i] !== $('#current-user').text()) {
+        if (users[i].toLowerCase() !== $('#current-user').text().toLowerCase()) {
           userHtml += ', ' + users[i];
         }
       }
@@ -132,7 +132,7 @@ function getMessages() {
         let messageText = document.createTextNode(message);
         let fromText = document.createTextNode(name);
 
-        if (name === currentUser) {
+        if (name.toLowerCase() === currentUser.toLowerCase()) {
           message_li.setAttribute('class', 'my-message pull-right');
           message_li.appendChild(messageText);
 
