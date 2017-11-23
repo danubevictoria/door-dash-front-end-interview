@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-  // SIDEBAR
+  // Set's sidebar's theme for scrollbar
   $("#sidebar").mCustomScrollbar({
     theme: "minimal"
   });
@@ -8,7 +8,7 @@ $(document).ready(function () {
   // Select room when you click on it
   $('#room-list').on('click', '.room', selectRoom);
 
-  // LOGIN
+  // Login when user submits username
   $('#login-form').submit(function (event) {
     event.preventDefault();
     setUsername();
@@ -18,7 +18,7 @@ $(document).ready(function () {
     getRoomList(url);
   });
 
-  // Send messages
+  // Send messages when user types in a message and clicks send
   $("#message-form").submit(function (event) {
     event.preventDefault();
     let activeRoom = document.getElementsByClassName('room active');
@@ -31,6 +31,7 @@ $(document).ready(function () {
   })
 });
 
+//Retrieves the list of rooms from API. Then grabs the details about the room and messages stored in chat room
 function getRoomList(url) {
   $.get(url, function(response) {
     let rooms = response.sort(compare);
@@ -42,6 +43,7 @@ function getRoomList(url) {
   });
 };
 
+//A function to compare values if a is greater than b
 function compare(a,b) {
   if (a.name < b.name)
     return -1;
@@ -50,6 +52,7 @@ function compare(a,b) {
   return 0;
 };
 
+//Creates room elements to be added to the list in HTML
 function createRoom(id, name, elemNum) {
   let room = document.createElement('li');
   let link = document.createElement('a');
@@ -69,18 +72,21 @@ function createRoom(id, name, elemNum) {
   room.appendChild(link);
 };
 
+//Sets the sidebar with username and adds the current user to top with room details
 function setUsername() {
   let username = $('#username').val().trim();
   $('#sidebar-username').text(username);
   $('#current-user').html(username);
 };
 
+//Opens up the chat room upon login
 function openChatRoom() {
   $('#login').toggleClass('hidden');
   $('#sidebar').toggleClass('hidden');
   $('#chat-room').toggleClass('hidden');
 };
 
+//Selects room on click
 function selectRoom() {
   $('.active').toggleClass('active');
   $(this).toggleClass('active');
@@ -88,6 +94,7 @@ function selectRoom() {
   getMessages();
 };
 
+//Retrieves room details from API and displays the users and room name at top
 function getRoomDetails() {
   let activeRoom = document.getElementsByClassName('room active');
 
@@ -112,6 +119,7 @@ function getRoomDetails() {
   }
 };
 
+//Retrieves messages for a selected room and focuses the scrollbar to the bottom for most recent messages
 function getMessages() {
   let activeRoom = document.getElementsByClassName('room active');
   let id;
@@ -154,6 +162,7 @@ function getMessages() {
   }
 };
 
+//Posts message to the room API when user types a message and clicks send
 function sendMessage(url) {
   let name = $('#current-user').text();
   name = name.charAt(0).toUpperCase() + name.slice(1);
@@ -173,11 +182,13 @@ function sendMessage(url) {
   });
 };
 
+//Focuses the chat window's scrollbar to the bottom
 function scrollBottomFocus() {
   let chatWindow = document.getElementById('chat-window');
   chatWindow.scrollTop = chatWindow.scrollHeight;
 };
 
+//Calculates the elapsed minutes user has been online since login
 function setElapsedMinutes() {
   let start = 0;
   let interval = setInterval(increment, 60000);
